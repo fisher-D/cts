@@ -74,45 +74,48 @@ class Hospital(object):
     # 使用医院编码，和血液信息hash
     def in_blood_info(self, bcode):
         in_info = {}
-        # query = {"bHashCode": self}
-        # b_info = db.blood_info.find(query)
-        in_info["inHashCode"] = ""
-        in_info["bHashCode"] = bcode
-        if self in st.chospital:
-            in_info["chosptial"] = st.chospital[self]
-            time_stamp = time.strftime(
-                '%Y-%m-%d-%H-%M-%S',
-                time.localtime(time.time()))
-            in_info["timeStamp"] = time_stamp
-            in_hash = hashgenerator(in_info)
-            in_info["inHashCode"] = in_hash
-            db.in_infos.insert_one(in_info)
-            print(in_info)
+        query = {"bHashCode": bcode}
+        b_info = db.blood_info.find(query)
+        if len(b_info) != 0:
+            in_info["inHashCode"] = ""
+            in_info["bHashCode"] = bcode
+            if self in st.chospital:
+                in_info["chosptial"] = st.chospital[self]
+                time_stamp = time.strftime(
+                    '%Y-%m-%d-%H-%M-%S',
+                    time.localtime(time.time()))
+                in_info["timeStamp"] = time_stamp
+                in_hash = hashgenerator(in_info)
+                in_info["inHashCode"] = in_hash
+                db.in_infos.insert_one(in_info)
+                print(in_info)
+            else:
+                print("Not vaild hospital")
         else:
-            print("error")
+            print("Blood Info Not in Database")
 
     # 使用血液信息hash
     def out_blood_info(self):
-        # out_info = {}
+        out_info = {}
         query = {"bHashCode": self}
         res = db.in_infos.find(query)
         if res.count() != 0:
+            out_info["outHashCode"] = ""
             for x in res:
-                print(x)
+                out_info["inHashCode"] = x["inHashCode"]
+            out_info["bHashCode"] = self
+            time_stamp = time.strftime(
+                '%Y-%m-%d-%H-%M-%S',
+                time.localtime(time.time()))
+            out_info["timeStamp"] = time_stamp
+            out_info["outHashCode"] = hashgenerator(out_info)
+            db.out_infos.insert_one(out_info)
+            print(out_info)
         else:
             print("Not in the database")
 
-        # out_info["outHashCode"] = ""
-        # out_info["inHashCode"] = res["inHashCode"]
-        # out_info["bHashCode"] = self
-        # time_stamp = time.strftime(
-        #     '%Y-%m-%d-%H-%M-%S',
-        #     time.localtime(time.time()))
-        # out_info["timeStamp"] = time_stamp
-        # out_info["outHashCode"] = hashgenerator(out_info)
-        # print(out_info)
-
     # 使用入库信息医院和入库信息hash
+
     def makeCerti(self, hospital):
         query = {"bHashCode": hospital}
         projectionFields = {'_id': False}

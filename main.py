@@ -61,14 +61,15 @@ def mBi_test():
 
 def H_in_test():
     hos = "SE12"
-    code = "67fc3cd4f49c469e0dee4083f0af33957e5d9d718f9bf32d44076577692ea5c9"
+    code = "f85e7f29a390bfc3c07b6c254dcf473a257f1047a1ecbdcc5466bfdf4f28b061"
     it.Hospital.in_blood_info(hos, code)
 
 
 def H_out_test():
-    code = "167fc3cd4f49c469e0dee4083f0af33957e5d9d718f9bf32d44076577692ea5c9"
+    code = "f85e7f29a390bfc3c07b6c254dcf473a257f1047a1ecbdcc5466bfdf4f28b061"
     it.Hospital.out_blood_info(code)
 
 
 # H_in_test()
-mBi_test()
+# H_in_test()
+H_out_test()
