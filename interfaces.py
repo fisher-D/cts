@@ -220,10 +220,11 @@ def login(object):
 
 
 def hashgenerator(object):
-    # traget = [str(i) for i in object]
+    traget = [str(i) for i in object]
     res = hashlib.sha256()
-    for x in object:
-        res.update(str(object[x]).encode("utf-8"))
+    print(object)
+    for x in traget:
+        res.update(x.encode("utf-8"))
     a = res.hexdigest()
     print(a)
     return a

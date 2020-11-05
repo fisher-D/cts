@@ -17,9 +17,9 @@ def login_test():
 
 
 def hashgenerate_test():
-    data = ["jackson1", "123123", 477856321459874563,
-            98745632145, True, "SE12", "se1"]
-    it.hashgenerator(data)
+    data = ["jackson1", "123123", "477856321459874563",
+            "98745632145", "True", "SE12", "se1"]
+    return it.hashgenerator(data)
 
 
 def infoEn_test():
@@ -79,8 +79,9 @@ def mC_test(res):
     it.Hospital.makeCerti(Hospital, code)
 
 
-register_test()
-res = mBi_test()
-H_in_test(res)
-# hashgenerate_test()
-mC_test(res)
+hashgenerate_test()
+# register_test()
+# res = mBi_test()
+# H_in_test(res)
+# # hashgenerate_test()
+# mC_test(res)
