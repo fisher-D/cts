@@ -9,7 +9,7 @@ from Crypto.Cipher import AES
 
 
 def add_to_16(value):
-    while len(value) % 16 != 0:
+    while len(value.encode('utf-8')) % 16 != 0:
         value += '\0'
     return str.encode(value)  # 返回bytes
 # 加密方法

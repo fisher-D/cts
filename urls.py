@@ -20,13 +20,13 @@ def post_info(data, ids):
     print(cts_instance.put_data(data=data, business_id=business_id).json())
 
 
-data = {"name": "jackson",
-        "password": "123123",
-        "idNum": 477856321459874563,
-        "phone": 98745632145,
-        "principals": True,
-        "chospital": "SE12",
-        "saddress": "se1"}
-ids = "bigdata_test"
-post_info(data, ids)
+# data = {"name": "jackson",
+#         "password": "123123",
+#         "idNum": 477856321459874563,
+#         "phone": 98745632145,
+#         "principals": True,
+#         "chospital": "SE12",
+#         "saddress": "se1"}
+# ids = "bigdata_test"
+# post_info(data, ids)
 # print(get_block_info(get_height()))

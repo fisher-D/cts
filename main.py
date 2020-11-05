@@ -1,10 +1,13 @@
 import interfaces as it
 import datastruct as ds
 
+names = "jahxua1i"
+idNumm = "41136"
+
 
 def register_test():
-    candidate = ["jackson", "123123", 477856321459874563,
-                 98745632145, True, "SE12", "se1"]
+    candidate = [names, "a11123123", idNumm,
+                 98745632145, False, "SE12", "se1"]
     it.register(candidate)
 
 
@@ -14,7 +17,7 @@ def login_test():
 
 
 def hashgenerate_test():
-    data = ["jackson", "123123", 477856321459874563,
+    data = ["jackson1", "123123", 477856321459874563,
             98745632145, True, "SE12", "se1"]
     it.hashgenerator(data)
 
@@ -43,10 +46,10 @@ def mBi_test():
     infos = {
         # 初始没有，由hashgenerator产生
         "bHashCode": "",
-        "name": "tom",
+        "name": names,
         # 证件类型
         "cType": ds.cType["type2"],
-        "idNum": 478521456325896321,
+        "idNum": idNumm,
         # 血型
         "bType": "O",
         "dType": ds.dType["type1"],
@@ -56,20 +59,28 @@ def mBi_test():
         "saddress": ds.saddress["se1"],
         # 时间戳，系统生成，遵循下述格式
     }
-    it.makeBloodInfo(infos)
+    return it.makeBloodInfo(infos)
 
 
-def H_in_test():
+def H_in_test(res):
     hos = "SE12"
-    code = "f85e7f29a390bfc3c07b6c254dcf473a257f1047a1ecbdcc5466bfdf4f28b061"
+    code = res
     it.Hospital.in_blood_info(hos, code)
 
 
 def H_out_test():
-    code = "f85e7f29a390bfc3c07b6c254dcf473a257f1047a1ecbdcc5466bfdf4f28b061"
+    code = "2dd059331008bad15cbe38e5a19c0f7ec549ac67c22d52432cf37c5ce10d450c"
     it.Hospital.out_blood_info(code)
 
 
-# H_in_test()
-# H_in_test()
-H_out_test()
+def mC_test(res):
+    Hospital = "SE12"
+    code = res
+    it.Hospital.makeCerti(Hospital, code)
+
+
+register_test()
+res = mBi_test()
+H_in_test(res)
+# hashgenerate_test()
+mC_test(res)
