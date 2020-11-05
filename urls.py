@@ -29,4 +29,4 @@ def post_info(data, ids):
 #         "saddress": "se1"}
 # ids = "bigdata_test"
 # post_info(data, ids)
-# print(get_block_info(get_height()))
+print(get_block_info(get_height()-1))

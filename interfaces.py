@@ -62,7 +62,7 @@ def makeBloodInfo(object):
     del object["name"]
     del object["cType"]
     del object["idNum"]
-    # wt.post_info(object, "blood_info")
+    wt.post_info(object, "blood_info")
     return object["bHashCode"]
 
 
@@ -147,14 +147,17 @@ class Hospital(object):
             certi["cHashcode"] = hashgenerator(certi)
             query = {"name": certi["BloodInfo"]["name"],
                      "idNum": certi["BloodInfo"]["idNum"]}
+            #
             candidate = db.donorcol.find(query, projectionFields)
             candi = list(candidate)[0]
             passc = candi["password"]
             certi["password"] = passc
             b_infoEncrypto(certi)
             db.cert_coll.insert_one(certi)
-            wt.post_info(certi, "certification_info")
-            print(certi)
+            ress = certi["cHashcode"]
+            print(ress)
+            wt.post_info(ress, "certi_info")
+
         else:
             print("No record in Database")
 

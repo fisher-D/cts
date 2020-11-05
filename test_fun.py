@@ -1,13 +1,14 @@
 import interfaces as it
 import datastruct as ds
 
-names = "jahxua1i"
-idNumm = "41136"
+names = "张三"
+idNumm = "123456789987654321"
+phone = "12345678987"
 
 
 def register_test():
-    candidate = [names, "a11123123", idNumm,
-                 98745632145, False, "SE12", "se1"]
+    candidate = [names, "a1234567", idNumm,
+                 phone, False, "SE12", "se1"]
     it.register(candidate)
 
 
@@ -51,7 +52,7 @@ def mBi_test():
         "cType": ds.cType["type2"],
         "idNum": idNumm,
         # 血型
-        "bType": "O",
+        "bType": "AB",
         "dType": ds.dType["type1"],
         # 献血量
         "bAmount": ds.bAmount[1],
@@ -63,7 +64,7 @@ def mBi_test():
 
 
 def H_in_test(res):
-    hos = "SE12"
+    hos = "SW"
     code = res
     it.Hospital.in_blood_info(hos, code)
 
@@ -74,14 +75,24 @@ def H_out_test():
 
 
 def mC_test(res):
-    Hospital = "SE12"
+    Hospital = "SW"
     code = res
     it.Hospital.makeCerti(Hospital, code)
 
 
-hashgenerate_test()
-# register_test()
-# res = mBi_test()
-# H_in_test(res)
-# # hashgenerate_test()
-# mC_test(res)
+# 注册用户
+register_test()
+# 假设用户去献血
+# 工作人员为其生成血液信息
+# res 为该信息的hash值
+res = mBi_test()
+
+# 这里为医院的功能
+# 使用血液信息
+# 在医院验证血液信息后
+# 上传入库信息进入区块链
+H_in_test(res)
+
+# 这里为用户生成献血证书
+# 并上链
+mC_test(res)
