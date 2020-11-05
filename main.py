@@ -71,4 +71,4 @@ def H_out_test():
 
 
 # H_in_test()
-hashgenerate_test()
+mBi_test()

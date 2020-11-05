@@ -71,6 +71,7 @@ class Hospital(object):
 
     # def login(self):
     #     pass
+    # 使用医院编码，和血液信息hash
     def in_blood_info(self, bcode):
         in_info = {}
         # query = {"bHashCode": self}
@@ -90,6 +91,7 @@ class Hospital(object):
         else:
             print("error")
 
+    # 使用血液信息hash
     def out_blood_info(self):
         # out_info = {}
         query = {"bHashCode": self}
@@ -110,8 +112,23 @@ class Hospital(object):
         # out_info["outHashCode"] = hashgenerator(out_info)
         # print(out_info)
 
-    def makeCerti(self):
-        pass
+    # 使用入库信息医院和入库信息hash
+    def makeCerti(self, hospital):
+        query = {"bHashCode": hospital}
+        projectionFields = {'_id': False}
+        res = db.blood_info.find(query, pojection=projectionFields)
+        if len(res) != 0:
+            certi = {}
+            certi["inHashCode"] = hospital
+            certi["chospital"] = st.chospital[self]
+            time_stamp = time.strftime(
+                '%Y-%m-%d-%H-%M-%S',
+                time.localtime(time.time()))
+            certi["timeStamp"] = time_stamp
+            certi["BloodInfo"] = res
+            print(certi)
+        else:
+            print("No record in Database")
 
     # def broadcastInfo(self):
     #     pass
