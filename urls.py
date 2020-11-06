@@ -1,6 +1,6 @@
 from wutongchain_cts.api import CTSAPI
 app_id = "30a3531c-1ce7-11eb-8a37-fa163ec0b2f0"
-secret_key = "30a61456-1ce7-11eb-8a37-fa163ec0b2f0"
+secret_key = "*.*"
 cts_instance = CTSAPI(app_id, secret_key)
 
 

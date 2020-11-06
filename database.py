@@ -1,6 +1,6 @@
 import pymongo
 
-hosts = "47.244.243.191"
+hosts = "*.*.*.*"
 
 
 def __init__():
